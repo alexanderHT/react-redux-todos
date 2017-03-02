@@ -1,3 +1,14 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "text": "asdasd",
+      "status": false,
+      "id": 1
+    },
+    {
+      "text": "asdasd",
+      "status": false,
+      "id": 2
+    }
+  ]
 }

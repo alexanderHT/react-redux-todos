@@ -1,3 +1,4 @@
+// add todos
 export const actionAddTodos = (text,id) => {
   console.log("yang ada di action : " + text);
   return {
@@ -7,25 +8,6 @@ export const actionAddTodos = (text,id) => {
       text: text,
       status: false
     }
-  }
-}
-
-export const actionFetchTodos = (todos) => {
-  console.log(todos);
-  return {
-    type: 'FETCH_TODOS',
-    payload: todos
-  }
-}
-// ini jalan dulu
-export const fetchTodos = () => {
-  return (dispatch) => {
-    setTimeout(() => {
-      fetch('http://localhost:3004/todos')
-        .then(res => res.json())
-        .then(todos => dispatch(actionFetchTodos(todos)))
-      }
-    , 3000);
   }
 }
 
@@ -42,6 +24,26 @@ export const addTodos = (text) => {
         .then(todos => {
           console.log(todos);
           dispatch(actionAddTodos(todos.text,todos.id))})
+      }
+    , 3000);
+  }
+}
+
+// get data from database
+export const actionFetchTodos = (todos) => {
+  console.log(todos);
+  return {
+    type: 'FETCH_TODOS',
+    payload: todos
+  }
+}
+// ini jalan dulu
+export const fetchTodos = () => {
+  return (dispatch) => {
+    setTimeout(() => {
+      fetch('http://localhost:3004/todos')
+        .then(res => res.json())
+        .then(todos => dispatch(actionFetchTodos(todos)))
       }
     , 3000);
   }
