@@ -13,7 +13,6 @@ export const actionAddTodos = (text,id) => {
 
 export const addTodos = (text) => {
   return (dispatch) => {
-    setTimeout(() => {
       fetch('http://localhost:3004/todos',
       {
         method: 'POST',
@@ -24,8 +23,6 @@ export const addTodos = (text) => {
         .then(todos => {
           console.log(todos);
           dispatch(actionAddTodos(todos.text,todos.id))})
-      }
-    , 3000);
   }
 }
 
@@ -37,7 +34,7 @@ export const actionFetchTodos = (todos) => {
     payload: todos
   }
 }
-// ini jalan dulu
+// ini yang di pangil dulu dari component untuk update yang ada di datbase, terus baru update state dengan memanggil funciton yang diatas
 export const fetchTodos = () => {
   return (dispatch) => {
     setTimeout(() => {
@@ -45,11 +42,11 @@ export const fetchTodos = () => {
         .then(res => res.json())
         .then(todos => dispatch(actionFetchTodos(todos)))
       }
-    , 3000);
+    , 1500);
   }
 }
 
-// delete
+// delete section
 export const actionDeleteTodos = (id) => {
   console.log(id);
   return {
@@ -68,5 +65,32 @@ export const deleteTodos = (id) => {
         .then(todos => {
           console.log(todos);
           dispatch(actionDeleteTodos(id))})
+  }
+}
+
+// check section
+export const actionCheckTodos = (id, text, status) => {
+  return {
+    type: 'CHECK_TODOS',
+    payload: {
+      id : id,
+      text : text,
+      status : status
+    }
+  }
+}
+
+export const checkTodos = (id, text, status) =>{
+  return (dispatch) => {
+      fetch('http://localhost:3004/todos/'+id,
+      {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({text: text, status: !status})
+      })
+        .then(res => res.json())
+        .then(todos => {
+          console.log(todos);
+          dispatch(actionCheckTodos(todos.id, todos.text, todos.status))})
   }
 }
