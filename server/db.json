@@ -1,14 +1,9 @@
 {
   "todos": [
     {
-      "text": "Makan Siang",
-      "status": false,
-      "id": 1
-    },
-    {
-      "text": "asdasdasd",
-      "status": false,
-      "id": 2
+      "text": "kembali ke hacktiv hallo 2789",
+      "status": true,
+      "id": 3
     }
   ]
 }

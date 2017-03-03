@@ -90,7 +90,32 @@ export const checkTodos = (id, text, status) =>{
       })
         .then(res => res.json())
         .then(todos => {
-          console.log(todos);
           dispatch(actionCheckTodos(todos.id, todos.text, todos.status))})
+  }
+}
+
+// edit section
+export const actionEditTodos = (id, text, status) => {
+  return {
+    type: 'EDIT_TODOS',
+    payload: {
+      id : id,
+      text : text,
+      status : status
+    }
+  }
+}
+
+export const editTodos = (id, text, status) =>{
+  return (dispatch) => {
+      fetch('http://localhost:3004/todos/'+id,
+      {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({text: text, status: status})
+      })
+        .then(res => res.json())
+        .then(todos => {
+          dispatch(actionEditTodos(todos.id, todos.text, todos.status))})
   }
 }

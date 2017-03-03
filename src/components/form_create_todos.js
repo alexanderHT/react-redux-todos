@@ -24,6 +24,9 @@ class FormCreateTodos extends Component {
   handleSubmitCreate(event){
     event.preventDefault()
     this.props.addTodos(this.state.currentText)
+    this.setState({
+      currentText: ''
+    });
   }
 
   // render form input for create to do list
